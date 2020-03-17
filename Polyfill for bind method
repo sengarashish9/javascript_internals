@@ -1,0 +1,36 @@
+
+var abc = function(param1,param2,param3){
+    console.log(this.fname+" "+param1+" "+param2+" "+param3);
+  }
+
+
+var obj1 = {
+  fname:"ashish",
+  lname:"sengar",
+   
+};
+
+var obj2 = {
+  fname:"Aish",
+  lname:"Rawat"
+};
+
+var abcd=abc.bind(obj2,"test1","test2");
+abcd("test3");
+
+Function.prototype.mybind=function(...args){
+  var ob=this;
+  objectname=args[0];
+  params=args.slice(1);
+  console.log(params);
+  
+    return function(...args1){
+      ob.apply(objectname,[...params,...args1]);
+    }
+}
+
+var abcde=abc.mybind(obj2,"test1","test2");
+abcde("test3");
+
+
+
